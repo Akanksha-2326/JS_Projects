@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import RestaurentCard from "./RestaurentCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 
 const Body = () => {
@@ -15,13 +17,19 @@ const Body = () => {
 
     const fetchData = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.597577102197533&lng=73.70973594024983&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5925785&lng=73.7183639&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json();
-        console.log(json);
-        setListOfRestro(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants );
-        setFilteredRestaurent(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants );
+        // console.log(json);
+        setListOfRestro(json.data.cards[4].card.card.gridElements?.infoWithStyle.restaurants );
+        setFilteredRestaurent(json.data.cards[4].card.card.gridElements?.infoWithStyle.restaurants );
     }
+
+    const onlineStatus = useOnlineStatus();
+    if (onlineStatus === false) 
+        return(
+            <h1>Oops you are offline !!! Please check your internet connect</h1>
+        )
 
     // if(listOfRestro.length === 0){
     //     return <Shimmer/>
@@ -57,7 +65,12 @@ const Body = () => {
             </div>
             <div className="res-container">
                 {filteredRestraurent.map((restaurent) => (
-                    <RestaurentCard key={restaurent.info.id} resData= {restaurent}/>
+                    <Link
+                    key={restaurent.info.id}
+                     to= {"restaurents/" + restaurent.info.id}
+                     >
+                    <RestaurentCard  resData= {restaurent}/>
+                    </Link>
                 ))}
             </div>
 
