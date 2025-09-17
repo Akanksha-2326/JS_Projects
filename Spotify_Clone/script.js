@@ -64,7 +64,7 @@ const makeAllPlay = () =>{
 
 Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
     element.addEventListener('click', (e)=>{
-        console.log(e.target);
+        // console.log(e.target);
         makeAllPlay();
         songIndex = parseInt(e.target.id);
         e.target.classList.remove('fa-circle-play');

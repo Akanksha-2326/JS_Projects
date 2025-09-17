@@ -1,5 +1,5 @@
 import {useState, useEffect } from "react";
-import { MENU_URL } from "../utils/constants";
+import { MENU_URL, NEW_MENU_URL } from "../utils/constants";
 
 
 const useRestaurentMenu=(resId)=>{
@@ -10,7 +10,7 @@ const useRestaurentMenu=(resId)=>{
     });
 
     const fetchData=async ()=>{
-        const data=await fetch(MENU_URL+resId);
+        const data=await fetch(NEW_MENU_URL +resId);
         const json=await data.json();
         setResInfo(json.data);
     };

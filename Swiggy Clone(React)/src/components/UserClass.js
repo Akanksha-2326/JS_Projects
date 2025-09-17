@@ -11,7 +11,7 @@ class UserClass extends React.Component{
                 location : "Default",
             }
         };
-        console.log("Constructor ")
+        // console.log("Constructor ")
     }
 
     async componentDidMount(){
@@ -22,21 +22,21 @@ class UserClass extends React.Component{
             userInfo : json,
         })
 
-        console.log(json);
-        console.log("Component Did Mount")
+        // console.log(json);
+        // console.log("Component Did Mount")
     }
 
     componentDidUpdate(){
-        console.log("Component Did update");
+        // console.log("Component Did update");
     }
 
     componentWillUnmount(){
-        console.log("Component will UnMount")
+        // console.log("Component will UnMount")
     }
 
     render(){
         const {name, location, avatar_url} = this.state.userInfo ;
-        console.log("Render ")
+        // console.log("Render ")
         return(
             <div className="user-card">
                 <img src = {avatar_url}></img>

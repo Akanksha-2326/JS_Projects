@@ -1,4 +1,4 @@
-console.log("Welcome to Tic Tac Toe");
+// console.log("Welcome to Tic Tac Toe");
 
 let music =new Audio("/gamebg.mp3");
 let turntune = new Audio("/ting.mp3");

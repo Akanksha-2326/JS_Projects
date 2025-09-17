@@ -1,5 +1,5 @@
         
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,15 +10,28 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurentsMenu from "./components/RestaurentsMenu";
 import Grocery from "./components/Grocery.js";
+import UserContext from "./utils/UserContext.js";
+
 
 
 
 const AppLayout = () => {
+    const [userName, setUserName] = useState()
+    useEffect(() =>{
+        const data ={
+            loggedInUser : "Akshay Saini",
+        }
+        setUserName(data.loggedInUser)
+
+    },[])
+
     return(
+        <UserContext.Provider value={{loggedInUser: userName , setUserName}}> 
         <div className="app">
             <Header/>
             <Outlet/> 
         </div>
+        </UserContext.Provider>
     )
 }
 
